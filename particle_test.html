@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./jquery-1.12.4.js"></script>
+    <script src="./particles.js"></script>
+    <script src="./particles_cus.js"></script>
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style_part.css">
+</head>
+
+<body style="background: #111;">
+
+
+
+
+    <header>
+        <img src="./logo 1.png" alt="">
+
+        <p>MENU</p>
+    </header>
+    <section class="sec01">
+        <div id="particles-js"></div>
+
+        <div class="txt_box">
+            <div id="timer" style="font-size: 64PX; font-weight: bold;"></div>
+
+            <h2>상위노출, 빠르면 단 7일이면 충분합니다.</h2>
+            <p>더 이상 고민하지 마세요. 변화는 7일이면 충분합니다.<br />
+                다인기획은 광고를 기다림으로 만들지 않습니다!</p>
+        </div>
+
+    </section>
+
+
+
+
+
+    <script>
+        // 초기 시간: 7일 0시간 0분 0초 = 604800초
+        let remainingTime = 604800;
+
+        function formatTime(seconds) {
+            const days = Math.floor(seconds / 86400); // 하루 = 86400초
+            seconds %= 86400;
+            const hours = Math.floor(seconds / 3600); // 한 시간 = 3600초
+            seconds %= 3600;
+            const minutes = Math.floor(seconds / 60); // 한 분 = 60초
+            seconds %= 60;
+
+            return `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
+        }
+
+        function updateTimer() {
+            if (remainingTime >= 0) {
+                document.getElementById("timer").innerText = formatTime(remainingTime);
+                remainingTime--; // 1초 감소
+            } else {
+                clearInterval(timerInterval); // 타이머 종료
+                document.getElementById("timer").innerText = "카운트다운 종료!";
+            }
+        }
+
+        // 1초마다 updateTimer 실행
+        const timerInterval = setInterval(updateTimer, 1000);
+        updateTimer(); // 첫 화면 업데이트
+    </script>
+</body>
+
+</html>
